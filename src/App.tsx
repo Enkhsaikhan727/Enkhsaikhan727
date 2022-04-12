@@ -2,7 +2,6 @@ import {
   InformationCircleIcon,
   ChartBarIcon,
   CogIcon,
-  UserAddIcon,
   ViewGridAddIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
@@ -31,7 +30,6 @@ import {
   isWordInWordList,
   isWinningWord,
   solution,
-  solution2,
   findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
@@ -41,7 +39,7 @@ import {
   saveGameStateToLocalStorage,
   setStoredIsHighContrastMode,
   getStoredIsHighContrastMode,
-  StoredGameState,
+  // StoredGameState,
   setStoredIsInfinityMode,
 } from './lib/localStorage'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
@@ -50,10 +48,10 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { AddWord } from './components/modals/AddWordModel'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 
 function App() {
-  const{id} = useParams()
+  // const{id} = useParams()
 
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
@@ -164,10 +162,10 @@ function App() {
   useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
-  useEffect(()=>{
-    const gamestate = {guesses:[],solution:id?.toUpperCase()}
-    saveGameStateToLocalStorage(gamestate as StoredGameState )
-  },[id])
+  // useEffect(()=>{
+  //   const gamestate = {guesses:[],solution:id?.toUpperCase()}
+  //   saveGameStateToLocalStorage(gamestate as StoredGameState )
+  // },[id])
 
   useEffect(() => {
     if (isGameWon) {
