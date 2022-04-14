@@ -1,8 +1,8 @@
 import {
-  InformationCircleIcon,
-  ChartBarIcon,
   CogIcon,
   ViewGridAddIcon,
+  ChartSquareBarIcon,
+  QuestionMarkCircleIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Grid } from './components/grid/Grid'
@@ -266,10 +266,10 @@ function App() {
   }
 
   return (
-    <div className="pt-2 pb-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-8 mt-20">
+    <div className="pt-0 pb-8 max-w-8xl mx-auto sm:px-8 lg:px-8">
+      <div className="flex w-96 mx-auto items-center mb-4 mt-20 ">
         <ViewGridAddIcon
-          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+          className="h-9 w-9 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => 
             
             {setIsAddModelOpen(true)}}
@@ -277,16 +277,16 @@ function App() {
         <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
           {GAME_TITLE}
         </h1>
-        <InformationCircleIcon
-          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+        <QuestionMarkCircleIcon
+          className="h-8 w-8 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
         />
-        <ChartBarIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+        <ChartSquareBarIcon
+          className="h-8 w-8 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
         />
         <CogIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+          className="h-8 w-8 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsSettingsModalOpen(true)}
         />
       </div>

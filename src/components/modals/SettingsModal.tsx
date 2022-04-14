@@ -44,11 +44,11 @@ export const SettingsModal = ({
           flag={isHighContrastMode}
           handleFlag={handleHighContrastMode}
         />
-          <SettingsToggle
+          {/* <SettingsToggle
           settingName="Хязгааргүй"
           flag={isInfinityMode}
           handleFlag={handleinfinityMode}
-        />
+        /> */}
       </div>
     </BaseModal>
   )

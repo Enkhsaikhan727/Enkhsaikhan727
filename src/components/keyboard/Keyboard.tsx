@@ -40,7 +40,7 @@ export const Keyboard = ({
       } else {
         const key = localeAwareUpperCase(e.key)
         // TODO: check this test if the range works with non-english letters
-        if (key.length === 1 && key >= 'А' && key <= 'Я') {
+        if (key.length === 1 && key >= 'А' && key <= 'Я'  ) {
           onChar(key)
         }
       }
@@ -54,7 +54,7 @@ export const Keyboard = ({
   return (
     <div>
       <div className="flex justify-center mb-1">
-        {['Е', 'Ц', 'У', 'Ж', 'Э', 'Н', 'Г', 'Ш', 'Ү', 'З', 'К' , 'Ъ'].map((key) => (
+        {['Е', 'Ц', 'У', 'Ж', 'Э', 'Н', 'Г', 'Ш', 'Ү', 'З', 'К' ].map((key) => (
           <Key
             value={key}
             key={key}
@@ -62,7 +62,11 @@ export const Keyboard = ({
             status={charStatuses[key]}
             isRevealing={isRevealing}
           />
+          
         ))}
+         <Key width={65.4} value="DELETE" onClick={onClick}>
+          {DELETE_TEXT}
+        </Key>
       </div>
       <div className="flex justify-center mb-1">
         {['Й', 'Ы', 'Б', 'Ө', 'А', 'Х', 'Р', 'О', 'Л' ,'Д', 'П'].map((key) => (
@@ -74,11 +78,11 @@ export const Keyboard = ({
             isRevealing={isRevealing}
           />
         ))}
+         <Key width={65.4} value="ENTER" onClick={onClick}>
+          {ENTER_TEXT}
+        </Key>
       </div>
       <div className="flex justify-center">
-        <Key width={65.4} value="DELETE" onClick={onClick}>
-          {DELETE_TEXT}
-        </Key>
         {['Я', 'Ч', 'Ё', 'С', 'М', 'И', 'Т' , 'Ь' , 'В', 'Ю'].map((key) => (
           <Key
             value={key}
@@ -88,9 +92,6 @@ export const Keyboard = ({
             isRevealing={isRevealing}
           />
         ))}
-         <Key width={65.4} value="ENTER" onClick={onClick}>
-          {ENTER_TEXT}
-        </Key>
       </div>
     </div>
   )
