@@ -4,6 +4,7 @@ import { WRONG_SPOT_MESSAGE, NOT_CONTAINED_MESSAGE } from '../constants/strings'
 import { getGuessStatuses } from './statuses'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 
+
 export const isWordInWordList = (word: string) => {
   return (
     WORDS.includes(localeAwareLowerCase(word)) ||
@@ -76,13 +77,13 @@ export const getWordOfDay = () => {
   // January 1, 2022 Game Epoch
   const epochMs = new Date('January 1, 2022 00:00:00').valueOf()
   const now = Date.now()
-  const msInDay = 1000000
-  const index = Math.floor((now - epochMs) / msInDay)
-  const nextday = (index + 1) * msInDay + epochMs
+  const msInDay = 400000
+  const index2 = Math.floor((now - epochMs) / msInDay )
+  const nextday = (Math.floor((now - epochMs) / msInDay)+ 1) * msInDay + epochMs
 
   return {
-    solution: localeAwareUpperCase(WORDS[index % WORDS.length]),
-    solutionIndex: index,
+    solution: localeAwareUpperCase(WORDS[index2 % WORDS.length]),
+    solutionIndex: index2,
     tomorrow: nextday,
   }
 }

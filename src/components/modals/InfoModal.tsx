@@ -17,43 +17,46 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell
           isRevealing={true}
           isCompleted={true}
-          value="А"
+          value="Э"
           status="correct"
         />
-        <Cell value="В" />
-        <Cell value="Д" />
-        <Cell value="А" />
         <Cell value="Р" />
+        <Cell value="Ч" />
+        <Cell value="Т" />
+        <Cell value="Э" />
+        <Cell value="Й" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        A үсэг нь зөв байрандаа байгааг ногоон өнгөөр харагдана.
+        Э үсэг нь зөв байрандаа байгааг ногоон өнгөөр харагдана.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="Ц" />
-        <Cell value="Э" />
+        <Cell value="З" />
+        <Cell value="О" />
         <Cell
           isRevealing={true}
           isCompleted={true}
-          value="Ц"
+          value="Р"
           status="present"
         />
-        <Cell value="Э" />
-        <Cell value="Г" />
+        <Cell value="И" />
+        <Cell value="Л" />
+        <Cell value="Т" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Ц үсэг нь буруу байрандаа байгааг шар өнгөөр илэрхийлнэ.
+        Р үсэг нь буруу байрандаа байгааг шар өнгөөр илэрхийлнэ.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="Х" />
-        <Cell value="Ө" />
+        <Cell value="А" />
+        <Cell value="М" />
+        <Cell value="Ж" />
+        <Cell isRevealing={true} isCompleted={true} value="И" status="absent" />
+        <Cell value="Л" />
         <Cell value="Т" />
-        <Cell isRevealing={true} isCompleted={true} value="Ө" status="absent" />
-        <Cell value="Ч" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Ө үсэг нь тухайн үгэнд байхгүй байгааг саарал өнгөөр илэрхийлнэ.
+        И үсэг нь тухайн үгэнд байхгүй байгааг саарал өнгөөр илэрхийлнэ.
       </p>
     </BaseModal>
   )
