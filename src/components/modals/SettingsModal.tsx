@@ -23,8 +23,6 @@ export const SettingsModal = ({
   handleDarkMode,
   isHighContrastMode,
   handleHighContrastMode,
-  isInfinityMode,
-  handleinfinityMode,
 }: Props) => {
   return (
     <BaseModal title="Тохиргоо" isOpen={isOpen} handleClose={handleClose}>

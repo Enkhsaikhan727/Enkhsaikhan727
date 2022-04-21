@@ -48,6 +48,7 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { AddWord } from './components/modals/AddWordModel'
+import axios from 'axios';
 // import { useParams } from 'react-router-dom'
 
 function App() {
@@ -56,7 +57,6 @@ function App() {
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
-
   const { showError: showErrorAlert, showSuccess: showSuccessAlert } =
     useAlert()
   const [currentGuess, setCurrentGuess] = useState('')
@@ -99,6 +99,9 @@ function App() {
     }
     return loaded.guesses
   })
+  const headers = {
+    'Content-Type': 'application/json'
+  }
 
   const [stats, setStats] = useState(() => loadStats())
 
@@ -109,9 +112,14 @@ function App() {
   )
 
   useEffect(() => {
-    // if no game state on load,
-    // show the user the how-to info modal
     if (!loadGameStateFromLocalStorage()) {
+      axios.post(`localhost:4000/user`,{
+        headers
+      })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
       setTimeout(() => {
         setIsInfoModalOpen(true)
       }, WELCOME_INFO_MODAL_MS)
@@ -160,6 +168,7 @@ function App() {
   
  
   useEffect(() => {
+
     saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
   // useEffect(()=>{
@@ -340,5 +349,4 @@ function App() {
     </div>
   )
 }
-
 export default App
