@@ -100,7 +100,8 @@ function App() {
     return loaded.guesses
   })
   const headers = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json , text/plain'
+
   }
 
   const [stats, setStats] = useState(() => loadStats())
@@ -168,14 +169,8 @@ function App() {
   
  
   useEffect(() => {
-
     saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
-  // useEffect(()=>{
-  //   const gamestate = {guesses:[],solution:id?.toUpperCase()}
-  //   saveGameStateToLocalStorage(gamestate as StoredGameState )
-  // },[id])
-
   useEffect(() => {
     if (isGameWon) {
       const winMessage =
@@ -212,6 +207,8 @@ function App() {
   }
 
   const onEnter = () => {
+    axios.post('http://localhost:4000/user')
+        .then();
     if (isGameWon || isGameLost) {
       return
     }
@@ -230,7 +227,6 @@ function App() {
       })
     }
 
-    // enforce hard mode - all guesses must contain all previously revealed letters
     if (isHardMode) {
       const firstMissingReveal = findFirstUnusedReveal(currentGuess, guesses)
       if (firstMissingReveal) {
@@ -242,8 +238,6 @@ function App() {
     }
 
     setIsRevealing(true)
-    // turn this back off after all
-    // chars have been revealed
     setTimeout(() => {
       setIsRevealing(false)
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)

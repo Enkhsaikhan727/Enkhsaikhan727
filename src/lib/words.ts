@@ -16,9 +16,7 @@ export const isWinningWord = (word: string) => {
   return solution === word
 }
 
-// build a set of previously revealed letters - present and correct
-// guess must use correct letters in that space and any other revealed letters
-// also check if all revealed instances of a letter are used (i.e. two C's)
+//hetsu gorim shalgah heseg
 export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   if (guesses.length === 0) {
     return false
@@ -37,8 +35,6 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
     }
   }
 
-  // check for the first unused letter, taking duplicate letters
-  // into account - see issue #198
   let n
   for (const letter of word) {
     n = lettersLeftArray.indexOf(letter)

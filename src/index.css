@@ -126,7 +126,6 @@ svg:hover {
   }
 }
 
-/* Additional animation on the child div to avoid letters turning upside down/snapping back to upright visual glitch */
 @keyframes offsetLetterFlip {
   0% {
     transform: rotateX(0deg);
