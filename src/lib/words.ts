@@ -1,8 +1,9 @@
 import { WORDS } from '../constants/wordlist'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { WRONG_SPOT_MESSAGE, NOT_CONTAINED_MESSAGE } from '../constants/strings'
-import { getGuessStatuses } from './statuses'
+import { getGuessStatuses } from './statusestaah'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
+import axios from 'axios'
 
 
 export const isWordInWordList = (word: string) => {
@@ -15,6 +16,9 @@ export const isWordInWordList = (word: string) => {
 export const isWinningWord = (word: string) => {
   return solution === word
 }
+export const isWinningWordTaah = (word: string) => {
+  return solution3 === word
+}
 
 //hetsu gorim shalgah heseg
 export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
@@ -25,7 +29,6 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   const lettersLeftArray = new Array<string>()
   const guess = guesses[guesses.length - 1]
   const statuses = getGuessStatuses(guess)
-
   for (let i = 0; i < guess.length; i++) {
     if (statuses[i] === 'correct' || statuses[i] === 'present') {
       lettersLeftArray.push(guess[i])
@@ -82,17 +85,15 @@ export const getWordOfDay = () => {
     tomorrow: nextday,
   }
 }
-export const getWordInfinity = () => {
 
-  const epochMs = new Date('January 1, 2022 00:00:00').valueOf()
-  const now = Date.now()
-  const msInDay = 1
-  const index = Math.floor((now - epochMs) / msInDay)
-  return {
-    solution2: localeAwareUpperCase(WORDS[index % WORDS.length]),
-    solutionIndex2: index,
-  }
+export const getLinkWord = async (link :string) => {
+  var Word :string = "" 
+  const responce = await axios.get(`http://localhost:3001/linkword?link=`+ link)
+  console.log(responce.data)
+  solution3 = responce.data
+  Word = responce.data
+  return Word
 }
+export let solution3 :string =""
 
 export const { solution, solutionIndex, tomorrow } = getWordOfDay()
-export const { solution2, solutionIndex2  } = getWordInfinity()

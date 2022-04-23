@@ -5,10 +5,10 @@ import {
   QuestionMarkCircleIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
-import { Grid } from './components/grid/Grid'
-import { Keyboard } from './components/keyboard/Keyboard'
+import { Grid } from './components/gridtaah/Gridtaah'
+import { Keyboard } from './components/keyboardtaah/Keyboardtaah'
 import { InfoModal } from './components/modals/InfoModal'
-import { StatsModal } from './components/modals/StatsModal'
+import { StatsModal } from './components/modals/StatsModaltaah'
 import { SettingsModal } from './components/modals/SettingsModal'
 import {
   GAME_TITLE,
@@ -29,9 +29,12 @@ import {
 import {
   isWordInWordList,
   isWinningWord,
-  solution,
   findFirstUnusedReveal,
   unicodeLength,
+  solutionIndex,
+  isWinningWordTaah,
+  getLinkWord,
+ 
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -48,12 +51,12 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { AddWord } from './components/modals/AddWordModel'
+
+import { useParams } from 'react-router-dom'
 import axios from 'axios';
-// import { useParams } from 'react-router-dom'
-
-function App() {
-  // const{id} = useParams()
-
+function AppChallenge() {
+  const{session} = useParams()
+  console.log(session)
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
@@ -67,6 +70,7 @@ function App() {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [currentRowClass, setCurrentRowClass] = useState('')
   const [isGameLost, setIsGameLost] = useState(false)
+  const [solution3, setSolution3] = useState("")
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
@@ -84,25 +88,22 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== solution) {
+    if (loaded?.solution !== solution3) {
       return []
     }
-    const gameWasWon = loaded.guesses.includes(solution)
+    const gameWasWon = loaded.guesses.includes(solution3)
     if (gameWasWon) {
       setIsGameWon(true)
     }
     if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
       setIsGameLost(true)
-      showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+      showErrorAlert(CORRECT_WORD_MESSAGE(solution3), {
         persist: true,
       })
     }
     return loaded.guesses
   })
-  const headers = {
-    'Content-Type': 'application/json , text/plain'
 
-  }
 
   const [stats, setStats] = useState(() => loadStats())
 
@@ -114,17 +115,14 @@ function App() {
 
   useEffect(() => {
     if (!loadGameStateFromLocalStorage()) {
-      axios.post(`localhost:4000/user`,{
-        headers
-      })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
       setTimeout(() => {
         setIsInfoModalOpen(true)
       }, WELCOME_INFO_MODAL_MS)
+
     }
+  getLinkWord(session as string).then(result=>{setSolution3(result)
+  console.log(result)}
+  )
   }, [])
 
   useEffect(() => {
@@ -169,8 +167,8 @@ function App() {
   
  
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solution })
-  }, [guesses])
+    saveGameStateToLocalStorage({ guesses, solution: solution3})
+  }, [guesses,solution3])
   useEffect(() => {
     if (isGameWon) {
       const winMessage =
@@ -207,11 +205,6 @@ function App() {
   }
 
   const onEnter = () => {
-    axios.post('http://localhost:4000/user')
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
     if (isGameWon || isGameLost) {
       return
     }
@@ -245,7 +238,7 @@ function App() {
       setIsRevealing(false)
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
 
-    const winningWord = isWinningWord(currentGuess)
+    const winningWord = isWinningWordTaah(currentGuess)
 
     if (
       unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
@@ -263,14 +256,13 @@ function App() {
       if (guesses.length === MAX_CHALLENGES - 1) {
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+        showErrorAlert(CORRECT_WORD_MESSAGE(solution3), {
           persist: true,
           delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
         })
       }
     }
   }
-
   return (
     <div className="pt-0 pb-8 max-w-8xl mx-auto sm:px-8 lg:px-8">
       <div className="flex w-96 mx-auto items-center mb-4 mt-20 ">
@@ -345,5 +337,5 @@ function App() {
       <AlertContainer />
     </div>
   )
-}
-export default App
+          }
+export default AppChallenge
