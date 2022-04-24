@@ -32,6 +32,7 @@ import {
   solution,
   findFirstUnusedReveal,
   unicodeLength,
+  sendCreate,
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -99,10 +100,6 @@ function App() {
     }
     return loaded.guesses
   })
-  const headers = {
-    'Content-Type': 'application/json , text/plain'
-
-  }
 
   const [stats, setStats] = useState(() => loadStats())
 
@@ -114,13 +111,6 @@ function App() {
 
   useEffect(() => {
     if (!loadGameStateFromLocalStorage()) {
-      axios.post(`localhost:4000/user`,{
-        headers
-      })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
       setTimeout(() => {
         setIsInfoModalOpen(true)
       }, WELCOME_INFO_MODAL_MS)
@@ -207,11 +197,12 @@ function App() {
   }
 
   const onEnter = () => {
-    axios.post('http://localhost:4000/user')
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
+    sendCreate("ХЯЛБАР")
+    axios.post(`http://localhost:3001/user`)
+    .then(res => {
+      console.log(res);
+     console.log(res.data);
+    })
     if (isGameWon || isGameLost) {
       return
     }

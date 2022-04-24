@@ -88,12 +88,25 @@ export const getWordOfDay = () => {
 
 export const getLinkWord = async (link :string) => {
   var Word :string = "" 
+  if(link === "random"){
+    const Word2:string = localeAwareUpperCase(WORDS[Math.floor(Math.random() * 10000) + 1])
+    console.log(WORDS[Math.floor(Math.random() * 10000) + 1])
+    return Word2
+  }else{
   const responce = await axios.get(`http://localhost:3001/linkword?link=`+ link)
   console.log(responce.data)
   solution3 = responce.data
   Word = responce.data
+  return Word}
+}
+
+export let solution3 :string =""
+export const sendCreate = async (WORD: string) => {
+  var Word : string = ""
+  const article = { word : WORD };
+  const responce = await axios.post("http://localhost:3001/create", article)
+  Word = responce.data
+  console.log(responce.data)
   return Word
 }
-export let solution3 :string =""
-
 export const { solution, solutionIndex, tomorrow } = getWordOfDay()
