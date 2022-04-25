@@ -31,16 +31,19 @@ export const SettingsModal = ({
           settingName="Хэцүү горим"
           flag={isHardMode}
           handleFlag={handleHardMode}
+          description={"Өмнөх үгийн өнгөөр илэрхийлсэн үсгийн дараагийн үгэнд ашиглана"}
         />
         <SettingsToggle
           settingName="Харанхуй горим"
           flag={isDarkMode}
           handleFlag={handleDarkMode}
+          description={"Бараан өнгөөр дэлгэцийг өөрчлөх өөрчлөх"}
         />
         <SettingsToggle
           settingName="Тодосгогч горим"
           flag={isHighContrastMode}
           handleFlag={handleHighContrastMode}
+          description={"Илүү тод өнгөөр дэлгэцийг өөрчлөх"}
         />
           {/* <SettingsToggle
           settingName="Хязгааргүй"

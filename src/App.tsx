@@ -32,7 +32,6 @@ import {
   solution,
   findFirstUnusedReveal,
   unicodeLength,
-  sendCreate,
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -50,11 +49,7 @@ import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { AddWord } from './components/modals/AddWordModel'
 import axios from 'axios';
-// import { useParams } from 'react-router-dom'
-
 function App() {
-  // const{id} = useParams()
-
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
@@ -111,6 +106,9 @@ function App() {
 
   useEffect(() => {
     if (!loadGameStateFromLocalStorage()) {
+      axios.post(`http://localhost:3001/user`)
+    .then(res => {
+    })
       setTimeout(() => {
         setIsInfoModalOpen(true)
       }, WELCOME_INFO_MODAL_MS)
@@ -197,12 +195,6 @@ function App() {
   }
 
   const onEnter = () => {
-    sendCreate("ХЯЛБАР")
-    axios.post(`http://localhost:3001/user`)
-    .then(res => {
-      console.log(res);
-     console.log(res.data);
-    })
     if (isGameWon || isGameLost) {
       return
     }

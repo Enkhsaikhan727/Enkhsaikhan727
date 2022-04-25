@@ -28,10 +28,8 @@ import {
 } from './constants/settings'
 import {
   isWordInWordList,
-  isWinningWord,
   findFirstUnusedReveal,
   unicodeLength,
-  solutionIndex,
   isWinningWordTaah,
   getLinkWord,
  
@@ -56,7 +54,6 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 function AppChallenge() {
   const{session} = useParams()
-  console.log(session)
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
@@ -115,15 +112,17 @@ function AppChallenge() {
 
   useEffect(() => {
     if (!loadGameStateFromLocalStorage()) {
+      axios.post(`http://178.128.102.36:3001/user`)
+    .then(res => {
+    })
       setTimeout(() => {
         setIsInfoModalOpen(true)
       }, WELCOME_INFO_MODAL_MS)
+      
 
     }
-  getLinkWord(session as string).then(result=>{setSolution3(result)
-  console.log(result)}
-  )
-  }, [])
+  getLinkWord(session as string).then(result=>{setSolution3(result)})
+  }, [session])
 
   useEffect(() => {
     if (isDarkMode) {
