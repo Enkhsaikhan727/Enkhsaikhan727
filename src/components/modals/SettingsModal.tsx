@@ -1,18 +1,18 @@
-import { BaseModal } from './BaseModal'
-import { SettingsToggle } from './SettingsToggle'
+import { BaseModal } from "./BaseModal";
+import { SettingsToggle } from "./SettingsToggle";
 
 type Props = {
-  isOpen: boolean
-  handleClose: () => void
-  isHardMode: boolean
-  handleHardMode: Function
-  isDarkMode: boolean
-  handleDarkMode: Function
-  isHighContrastMode: boolean
-  handleHighContrastMode: Function
-  isInfinityMode: boolean
-  handleinfinityMode: Function
-}
+  isOpen: boolean;
+  handleClose: () => void;
+  isHardMode: boolean;
+  handleHardMode: Function;
+  isDarkMode: boolean;
+  handleDarkMode: Function;
+  isHighContrastMode: boolean;
+  handleHighContrastMode: Function;
+  isInfinityMode: boolean;
+  handleinfinityMode: Function;
+};
 
 export const SettingsModal = ({
   isOpen,
@@ -21,8 +21,6 @@ export const SettingsModal = ({
   handleHardMode,
   isDarkMode,
   handleDarkMode,
-  // isHighContrastMode,
-  // handleHighContrastMode,
 }: Props) => {
   return (
     <BaseModal title="Тохиргоо" isOpen={isOpen} handleClose={handleClose}>
@@ -31,7 +29,9 @@ export const SettingsModal = ({
           settingName="Хэцүү горим"
           flag={isHardMode}
           handleFlag={handleHardMode}
-          description={"Өмнөх үгийн өнгөөр илэрхийлсэн үсгийн дараагийн үгэнд ашиглана"}
+          description={
+            "Өмнөх үгийн өнгөөр илэрхийлсэн үсгийн дараагийн үгэнд ашиглана"
+          }
         />
         <SettingsToggle
           settingName="Харанхуй горим"
@@ -45,12 +45,12 @@ export const SettingsModal = ({
           handleFlag={handleHighContrastMode}
           description={"Илүү тод өнгөөр дэлгэцийг өөрчлөх"}
         /> */}
-          {/* <SettingsToggle
+        {/* <SettingsToggle
           settingName="Хязгааргүй"
           flag={isInfinityMode}
           handleFlag={handleinfinityMode}
         /> */}
       </div>
     </BaseModal>
-  )
-}
+  );
+};

@@ -1,16 +1,16 @@
-import { getStatuses } from '../../lib/statusestaah'
-import { Key } from './Keytaah'
-import { useEffect } from 'react'
-import { ENTER_TEXT, DELETE_TEXT } from '../../constants/strings'
-import { localeAwareUpperCase } from '../../lib/words'
+import { getStatuses } from "../../lib/statusestaah";
+import { Key } from "./Keytaah";
+import { useEffect } from "react";
+import { ENTER_TEXT, DELETE_TEXT } from "../../constants/strings";
+import { localeAwareUpperCase } from "../../lib/words";
 
 type Props = {
-  onChar: (value: string) => void
-  onDelete: () => void
-  onEnter: () => void
-  guesses: string[]
-  isRevealing?: boolean
-}
+  onChar: (value: string) => void;
+  onDelete: () => void;
+  onEnter: () => void;
+  guesses: string[];
+  isRevealing?: boolean;
+};
 
 export const Keyboard = ({
   onChar,
@@ -19,41 +19,41 @@ export const Keyboard = ({
   guesses,
   isRevealing,
 }: Props) => {
-  const charStatuses = getStatuses(guesses)
+  const charStatuses = getStatuses(guesses);
 
   const onClick = (value: string) => {
-    if (value === 'ENTER') {
-      onEnter()
-    } else if (value === 'DELETE') {
-      onDelete()
+    if (value === "ENTER") {
+      onEnter();
+    } else if (value === "DELETE") {
+      onDelete();
     } else {
-      onChar(value)
+      onChar(value);
     }
-  }
+  };
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.code === 'Enter') {
-        onEnter()
-      } else if (e.code === 'Backspace') {
-        onDelete()
+      if (e.code === "Enter") {
+        onEnter();
+      } else if (e.code === "Backspace") {
+        onDelete();
       } else {
-        const key = localeAwareUpperCase(e.key)
-        if (key.length === 1 && key >= 'А' && key <= 'Я'  ) {
-          onChar(key)
+        const key = localeAwareUpperCase(e.key);
+        if (key.length === 1 && key >= "А" && key <= "Я") {
+          onChar(key);
         }
       }
-    }
-    window.addEventListener('keyup', listener)
+    };
+    window.addEventListener("keyup", listener);
     return () => {
-      window.removeEventListener('keyup', listener)
-    }
-  }, [onEnter, onDelete, onChar])
+      window.removeEventListener("keyup", listener);
+    };
+  }, [onEnter, onDelete, onChar]);
 
   return (
     <div>
       <div className="flex justify-center mb-1">
-        {['Е', 'Ц', 'У', 'Ж', 'Э', 'Н', 'Г', 'Ш', 'Ү', 'З', 'П' ].map((key) => (
+        {["Е", "Ц", "У", "Ж", "Э", "Н", "Г", "Ш", "Ү", "З", "П"].map((key) => (
           <Key
             value={key}
             key={key}
@@ -61,12 +61,10 @@ export const Keyboard = ({
             status={charStatuses[key]}
             isRevealing={isRevealing}
           />
-          
         ))}
-         
       </div>
       <div className="flex justify-center mb-1">
-        {['Й', 'Ы', 'Б', 'Ө', 'А', 'Х', 'Р', 'О', 'Л' ,'Д' ].map((key) => (
+        {["Й", "Ы", "Б", "Ө", "А", "Х", "Р", "О", "Л", "Д"].map((key) => (
           <Key
             value={key}
             key={key}
@@ -77,10 +75,10 @@ export const Keyboard = ({
         ))}
       </div>
       <div className="flex justify-center">
-      <Key width={65.4} value="DELETE" onClick={onClick}>
+        <Key width={65.4} value="DELETE" onClick={onClick}>
           {DELETE_TEXT}
         </Key>
-        {['Я', 'Ч', 'Ё', 'С', 'М', 'И', 'Т' , 'Ь' , 'В'].map((key) => (
+        {["Я", "Ч", "Ё", "С", "М", "И", "Т", "Ь", "В"].map((key) => (
           <Key
             value={key}
             key={key}
@@ -89,9 +87,10 @@ export const Keyboard = ({
             isRevealing={isRevealing}
           />
         ))}
-         <Key width={65.4} value="ENTER" onClick={onClick}>
+        <Key width={65.4} value="ENTER" onClick={onClick}>
           {ENTER_TEXT}
         </Key>
       </div>
-    </div>)
-}
+    </div>
+  );
+};

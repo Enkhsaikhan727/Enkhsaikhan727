@@ -1,16 +1,17 @@
-import { Cell } from '../grid/Cell'
-import { BaseModal } from './BaseModal'
+import { Cell } from "../grid/Cell";
+import { BaseModal } from "./BaseModal";
 
 type Props = {
-  isOpen: boolean
-  handleClose: () => void
-}
+  isOpen: boolean;
+  handleClose: () => void;
+};
 
 export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="Тоглох заавар" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-       Та 7 удаагийн оролдлогоор үгийг таагаарай. Таах бүрт нүдний өнгө солигдож таах үгтэй хэр ойрхон байгааг харуулах болно.
+        Та 7 удаагийн оролдлогоор үгийг таагаарай. Таах бүрт нүдний өнгө
+        солигдож таах үгтэй хэр ойрхон байгааг харуулах болно.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
@@ -59,5 +60,5 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         И үсэг нь тухайн үгэнд байхгүй байгааг саарал өнгөөр илэрхийлнэ.
       </p>
     </BaseModal>
-  )
-}
+  );
+};

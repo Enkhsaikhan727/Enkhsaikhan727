@@ -1,14 +1,14 @@
-import { MAX_CHALLENGES } from '../../constants/settings'
-import { CompletedRow } from './CompletedRowtaah'
-import { CurrentRow } from './CurrentRowtaah'
-import { EmptyRow } from './EmptyRowtaah'
+import { MAX_CHALLENGES } from "../../constants/settings";
+import { CompletedRow } from "./CompletedRowtaah";
+import { CurrentRow } from "./CurrentRowtaah";
+import { EmptyRow } from "./EmptyRowtaah";
 
 type Props = {
-  guesses: string[]
-  currentGuess: string
-  isRevealing?: boolean
-  currentRowClassName: string
-}
+  guesses: string[];
+  currentGuess: string;
+  isRevealing?: boolean;
+  currentRowClassName: string;
+};
 
 export const Grid = ({
   guesses,
@@ -19,7 +19,7 @@ export const Grid = ({
   const empties =
     guesses.length < MAX_CHALLENGES - 1
       ? Array.from(Array(MAX_CHALLENGES - 1 - guesses.length))
-      : []
+      : [];
 
   return (
     <div className="pb-6">
@@ -37,5 +37,5 @@ export const Grid = ({
         <EmptyRow key={i} />
       ))}
     </div>
-  )
-}
+  );
+};
