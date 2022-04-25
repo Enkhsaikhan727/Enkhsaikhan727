@@ -44,7 +44,7 @@ export const AddWord = ({ isOpen, handleClose }: Props) => {
                 await sendCreate(text.toUpperCase()).then((result) => {
                   Word = result;
                 });
-                setText("http://localhost:3000/" + Word);
+                setText("http://178.128.102.36:3001:3000/" + Word);
               }
             }}
           >
