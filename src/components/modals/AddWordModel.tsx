@@ -37,7 +37,7 @@ export const AddWord = ({ isOpen, handleClose  }: Props) => {
               await sendCreate(text.toUpperCase()).then(result=>{
               Word = result
               })
-              setText("http://taalda.games/"+Word)
+              setText("http://localhost:3000/"+Word)
               // navigator.clipboard.writeText("http://taalda.games/"+Word).then()
             }
             }

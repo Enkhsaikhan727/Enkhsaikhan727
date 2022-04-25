@@ -21,8 +21,8 @@ export const SettingsModal = ({
   handleHardMode,
   isDarkMode,
   handleDarkMode,
-  isHighContrastMode,
-  handleHighContrastMode,
+  // isHighContrastMode,
+  // handleHighContrastMode,
 }: Props) => {
   return (
     <BaseModal title="Тохиргоо" isOpen={isOpen} handleClose={handleClose}>
@@ -39,12 +39,12 @@ export const SettingsModal = ({
           handleFlag={handleDarkMode}
           description={"Бараан өнгөөр дэлгэцийг өөрчлөх өөрчлөх"}
         />
-        <SettingsToggle
+        {/* <SettingsToggle
           settingName="Тодосгогч горим"
           flag={isHighContrastMode}
           handleFlag={handleHighContrastMode}
           description={"Илүү тод өнгөөр дэлгэцийг өөрчлөх"}
-        />
+        /> */}
           {/* <SettingsToggle
           settingName="Хязгааргүй"
           flag={isInfinityMode}

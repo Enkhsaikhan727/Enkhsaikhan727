@@ -106,7 +106,7 @@ function App() {
 
   useEffect(() => {
     if (!loadGameStateFromLocalStorage()) {
-      axios.post(`http://localhost:3001/user`)
+      axios.post(`http://178.128.102.36:3001/user`)
     .then(res => {
     })
       setTimeout(() => {
@@ -263,13 +263,13 @@ function App() {
             
             {setIsAddModelOpen(true)}}
         />
-        <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
-          {GAME_TITLE}
-        </h1>
-        <QuestionMarkCircleIcon
+         <QuestionMarkCircleIcon
           className="h-8 w-8 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
         />
+        <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
+          {GAME_TITLE}
+        </h1>
         <ChartSquareBarIcon
           className="h-8 w-8 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
