@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { sendCreate, isWordInWordList } from "../../lib/words";
+import { sendCreate, isWordInWordList, isWordInWordListCreate } from "../../lib/words";
 import { BaseModal } from "./BaseModal";
 
 type Props = {
@@ -37,14 +37,13 @@ export const AddWord = ({ isOpen, handleClose }: Props) => {
             type="button"
             className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
             onClick={async () => {
-              if (!isWordInWordList(text)) {
+              if (!isWordInWordListCreate(text)) {
                 setText("үг олдсонгүй");
-                alert("oldsongui");
               } else {
                 await sendCreate(text.toUpperCase()).then((result) => {
                   Word = result;
                 });
-                setText("http://178.128.102.36:3001:3000/" + Word);
+                setText("http://taalda.games/" + Word);
               }
             }}
           >

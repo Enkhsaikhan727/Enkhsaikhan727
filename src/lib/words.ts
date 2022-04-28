@@ -14,7 +14,11 @@ export const isWordInWordList = (word: string) => {
     VALID_GUESSES.includes(localeAwareLowerCase(word))
   );
 };
-
+export const isWordInWordListCreate = (word: string) => {
+  return (
+    WORDS.includes(localeAwareLowerCase(word))
+  );
+};
 export const isWinningWord = (word: string) => {
   return solution === word;
 };
