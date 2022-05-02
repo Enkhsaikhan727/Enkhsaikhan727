@@ -15,7 +15,7 @@ export const shareStatus = (
       lost ? 'X' : guesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
       generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode))
-      + "\n http://taalda.games/"
+      + "\n https://taalda.games/"
   )
 }
 

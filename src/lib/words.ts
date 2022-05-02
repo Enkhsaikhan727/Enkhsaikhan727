@@ -14,11 +14,7 @@ export const isWordInWordList = (word: string) => {
     VALID_GUESSES.includes(localeAwareLowerCase(word))
   );
 };
-export const isWordInWordListCreate = (word: string) => {
-  return (
-    WORDS.includes(localeAwareLowerCase(word))
-  );
-};
+
 export const isWinningWord = (word: string) => {
   return solution === word;
 };
@@ -94,7 +90,7 @@ export const getWordOfDay = () => {
 export const getLinkWord = async (link: string) => {
   var Word: string = "";
   const responce = await axios.get(
-    `http://178.128.102.36:3001/linkword?link=` + link
+    `https://test.taalda.games/api/linkword?link=` + link
   );
   solution3 = responce.data;
   Word = responce.data;
@@ -108,7 +104,7 @@ export const sendCreate = async (WORD: string) => {
     Word = localeAwareUpperCase(WORDS[Math.floor(Math.random() * 10000) + 1]);
     const article = { word: Word };
     const responce = await axios.post(
-      "http://178.128.102.36:3001/create",
+      "https://test.taalda.games/api/create",
       article
     );
     Word = responce.data;
@@ -116,7 +112,7 @@ export const sendCreate = async (WORD: string) => {
   } else {
     const article = { word: WORD };
     const responce = await axios.post(
-      "http://178.128.102.36:3001/create",
+      "https://test.taalda.games/api/create",
       article
     );
     Word = responce.data;

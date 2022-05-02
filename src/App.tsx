@@ -231,6 +231,7 @@ function App() {
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
+
       setGuesses([...guesses, currentGuess]);
       setCurrentGuess("");
 
