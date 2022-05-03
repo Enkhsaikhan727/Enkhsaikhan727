@@ -43,8 +43,8 @@ export const AddWord = ({ isOpen, handleClose }: Props) => {
                 await sendCreate(text.toUpperCase()).then((result) => {
                   Word = result;
                 });
-                setText("https://taalda.games/" + Word);
-                navigator.clipboard.writeText("https://taalda.games/" + Word);
+                setText("https://www.taalda.games/" + Word);
+                navigator.clipboard.writeText("https://www.taalda.games/" + Word);
               }
             }}
           >
